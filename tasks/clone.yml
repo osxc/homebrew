@@ -1,0 +1,14 @@
+---
+# By git clone
+- name: Clone homebrew
+  git: repo=https://github.com/Homebrew/homebrew.git dest={{ clone_dir }} update=no
+
+- name: Copy old /usr/local
+  copy: src=/usr/local/ dest={{ clone_dir }} force=no
+
+- name: Fix user ACLs
+  file: dest={{ clone_dir }} mode=0770 group=admin recurse=yes
+
+- name: Relink to /usr/local
+  file: state=link src={{ clone_dir }} dest=/usr/local force=yes
+

@@ -1,0 +1,7 @@
+---
+# Ensure that homebrew is installed on your mac
+- include: script.yml
+  when: installation_method == 'script'
+
+- include: clone.yml
+  when: installation_method == 'clone'

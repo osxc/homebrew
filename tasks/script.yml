@@ -1,0 +1,7 @@
+---
+# By Script
+- name: Ensure that homebrew is installed with the script method
+  shell: >
+         ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+         creates=/usr/local/.git
+
