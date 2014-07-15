@@ -3,7 +3,7 @@ language: objective-c
 before_install:
 - sudo easy_install pip
 install:
-- pip install ansible
+- sudo pip install ansible
 script:
 - echo localhost > inventory
 - ansible-playbook --syntax-check -i inventory test.yml
