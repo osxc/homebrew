@@ -3,6 +3,8 @@ homebrew
 
 Ensure that homebrew is installed on your mac
 
+[![Build Status](https://travis-ci.org/osxc/homebrew.svg)](https://travis-ci.org/osxc/homebrew/)
+
 ## Requirements
 
 none
