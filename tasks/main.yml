@@ -5,3 +5,6 @@
 
 - include: clone.yml
   when: installation_method == 'clone'
+
+- name: Update Homebrew
+  homebrew: update_homebrew: yes

@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars_file:
+  - defaults/main.yml
+  tasks:
+  - name: Uninstall Homebrew
+    shell: curl -L https://gist.githubusercontent.com/rricard/63ae797d7d1a33984318/raw/a833ba44e7be8428d877e58640720ff43c59dbad/uninstall_homebrew.sh | /bin/sh
+  - include: tasks/main.yml
