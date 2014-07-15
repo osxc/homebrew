@@ -10,5 +10,6 @@
   file: dest={{ clone_dir }} mode=0770 group=admin recurse=yes
 
 - name: Relink to /usr/local
+  sudo: yes
   file: state=link src={{ clone_dir }} dest=/usr/local force=yes
 
