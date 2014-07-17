@@ -1,15 +1,30 @@
 ---
 # By git clone
-- name: Clone homebrew
-  git: repo=https://github.com/Homebrew/homebrew.git dest={{ clone_dir }} update=no
 
-- name: Copy old /usr/local
-  copy: src=/usr/local/ dest={{ clone_dir }} force=no
+- name: assert new homebrew installation
+  stat: path={{ install_dir }}/bin/brew
+  register: brew_installed
 
-- name: Fix user ACLs
-  file: dest={{ clone_dir }} mode=0770 group=admin recurse=yes
+- name: clone homebrew if needed
+  git: "repo=https://github.com/Homebrew/homebrew dest={{ clone_dir }} update=no"
+  when: brew_installed.stat.exists == false
 
-- name: Relink to /usr/local
-  sudo: yes
-  file: state=link src={{ clone_dir }} dest=/usr/local force=yes
+- name: copy {{ install_dir }} to {{ clone_dir }}
+  sudo: True
+  synchronize: src={{ install_dir }}/ dest={{ clone_dir }} copy_links=yes
+  when: brew_installed.stat.exists == false
 
+- name: fix user acl on {{ clone_dir }} and clean up {{ install_dir }}
+  sudo: True
+  file: path={{ item.path }} state={{ item.state|default('directory') }}
+        owner={{ ansible_user_id }} group=staff mode=0755
+  with_items:
+    - { path: '{{ clone_dir }}' }
+    - { path: '{{ clone_dir }}/bin' }
+    - { path: '{{ install_dir }}' , state: 'absent' }
+  when: brew_installed.stat.exists == false
+
+- name: ensure {{ clone_dir }} is linked to the {{ install_dir }}
+  sudo: True
+  file: state=link src={{ clone_dir }} dest={{ install_dir }} owner={{ ansible_user_id }}
+  when: brew_installed.stat.exists == false
