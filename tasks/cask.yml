@@ -12,8 +12,9 @@
   when: cask_installed.stat.exists == false
 
 - name: add new cask opts to common env
-  lineinfile: dest=/Users/{{ ansible_user_id }}/.common_env
+  sudo: yes
+  lineinfile: dest=/Users/{{ item }}/.common_env
               regexp='^export HOMEBREW_CASK_OPTS'
               line='export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
               state=present
-  when: cask_installed.stat.exists == false
+  with_items: affected_users

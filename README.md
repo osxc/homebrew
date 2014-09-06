@@ -8,19 +8,21 @@ Ensure that homebrew is installed on your mac
 ## Requirements
 
 - XCode Command-Line Tools (needs `git`)
+- May need root for certain actions
 
 ## Role variables
 
 | Name                  | Description                                      | Default            |
 |-----------------------|--------------------------------------------------|--------------------|
 | `installation_method` | The way to install homebrew, `script` or `clone` | `script`           |
-| `clone_dir`           | The path where homebrew will be cloned           | `~/src/github.com/Homebrew/homebrew` |
+| `clone_dir`           | The path where homebrew will be cloned           | `/Users/{{ ansible_user_id }}/src/github.com/Homebrew/homebrew` |
 | `install_dir`         | The path where homebrew will be installed        | `/usr/local`       |
 | `install_cask`        | Defines if you want to install Homebrew Cask too | `yes`              |
+| `affected_users`      | The users affected by the custom settings        | `[ "{{ ansible_user_id }}" ]` |
 
 ## Dependencies
 
-none
+- `osxc.common-env`
 
 ## License
 
