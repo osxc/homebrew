@@ -12,9 +12,9 @@
   when: cask_installed.stat.exists == false
 
 - name: add new cask opts to common env
-  sudo: yes
   lineinfile: dest=/Users/{{ item }}/.common_env
               regexp='^export HOMEBREW_CASK_OPTS'
               line='export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
               state=present
+              owner={{ item }}
   with_items: affected_users

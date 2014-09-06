@@ -8,7 +8,7 @@ Ensure that homebrew is installed on your mac
 ## Requirements
 
 - XCode Command-Line Tools (needs `git`)
-- May need root for certain actions
+- Needs root if you want to affect other users
 
 ## Role variables
 

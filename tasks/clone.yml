@@ -18,7 +18,6 @@
   when: brew_installed.stat.exists == false and needs_sync.stat.exists
 
 - name: fix user acl on clone_dir and clean up install_dir
-  sudo: yes
   file: path={{ item.path }} state={{ item.state|default('directory') }}
         owner={{ ansible_user_id }} group=staff mode={{ item.mode|default('0775') }}
   with_items:
