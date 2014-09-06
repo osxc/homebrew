@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Robin Ricard
+  description: Ensure that homebrew is installed on a Mac
+  company: osxc
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: MacOSX
+    versions:
+    - 10.9
+    - 10.10
+  categories:
+  - development
+  - packaging
+  - system
+dependencies: []
