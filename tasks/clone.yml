@@ -6,20 +6,18 @@
   register: brew_installed
 
 - name: assert existence of the install dir
-  stat: path={{ install_dir }}
+  stat: path=install_dir
   register: needs_sync
 
 - name: clone homebrew if needed
   git: "repo=https://github.com/Homebrew/homebrew dest={{ clone_dir }} update=no"
   when: brew_installed.stat.exists == false
 
-- name: copy {{ install_dir }} to {{ clone_dir }}
-  sudo: True
+- name: copy install_dir to clone_dir
   synchronize: src={{ install_dir }}/ dest={{ clone_dir }} copy_links=yes
   when: brew_installed.stat.exists == false and needs_sync.stat.exists
 
 - name: fix user acl on {{ clone_dir }} and clean up {{ install_dir }}
-  sudo: True
   file: path={{ item.path }} state={{ item.state|default('directory') }}
         owner={{ ansible_user_id }} group=staff mode=0755
   with_items:
@@ -28,7 +26,6 @@
     - { path: '{{ install_dir }}' , state: 'absent' }
   when: brew_installed.stat.exists == false
 
-- name: ensure {{ clone_dir }} is linked to the {{ install_dir }}
-  sudo: True
+- name: ensure that clone_dir is linked to the install_dir
   file: state=link src={{ clone_dir }} dest={{ install_dir }} owner={{ ansible_user_id }}
   when: brew_installed.stat.exists == false

@@ -8,7 +8,6 @@ Ensure that homebrew is installed on your mac
 ## Requirements
 
 - XCode Command-Line Tools (needs `git`)
-- Sudo permissions
 
 ## Role variables
 

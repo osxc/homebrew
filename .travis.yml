@@ -8,5 +8,5 @@ install:
 script:
 - echo localhost > inventory
 - ansible-playbook --syntax-check -i inventory test.yml
-- ansible-playbook -i inventory test.yml --connection=local -s -vvvv -e installation_method=clone
-- ansible-playbook -i inventory test.yml --connection=local -s -vvvv -e installation_method=script
+- ansible-playbook -i inventory test.yml --connection=local -vvvv -e installation_method=script
+- ansible-playbook -i inventory test.yml --connection=local -vvvv -e installation_method=clone
