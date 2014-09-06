@@ -1,0 +1,2 @@
+clone_dir: "/Users/{{ ansible_user_id}}/src/github.com/Homebrew/homebrew"
+install_dir: "/Users/{{ ansible_user_id}}/brew"
