@@ -2,7 +2,7 @@
 # By git clone
 
 - name: assert new homebrew installation
-  stat: path={{ install_dir }}/bin/brew
+  stat: path={{ install_dir }}/Cellar
   register: brew_installed
 
 - name: assert existence of the install dir
