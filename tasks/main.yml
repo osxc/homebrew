@@ -8,3 +8,6 @@
 
 - name: Update Homebrew
   homebrew: update_homebrew=yes
+
+- include: cask.yml
+  when: install_cask
