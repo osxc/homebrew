@@ -15,4 +15,4 @@ galaxy_info:
   - packaging
   - system
 dependencies:
-- src: osxc.common-env
+- osxc.common-env
