@@ -1,7 +1,7 @@
 ---
 language: objective-c
 before_install:
-- curl -L https://gist.githubusercontent.com/rricard/63ae797d7d1a33984318/raw/a833ba44e7be8428d877e58640720ff43c59dbad/uninstall_homebrew.sh | sudo /bin/sh || sudo rm -rf /usr/local/{Cellar,Library,.git}
+- sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
 - sudo easy_install pip
 install:
 - sudo pip install ansible
