@@ -4,4 +4,4 @@ clone_dir: "/Users/{{ ansible_user_id}}/src/github.com/Homebrew/homebrew"
 install_dir: "/usr/local"
 install_cask: yes
 affected_users:
-- {{ ansible_user_id }}
+- "{{ ansible_user_id }}"
