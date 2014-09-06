@@ -1,4 +1,4 @@
 ---
 installation_method: script
-clone_dir: "~{{ ansible_user_id}}/src/github.com/Homebrew/homebrew"
+clone_dir: "/Users/{{ ansible_user_id}}/src/github.com/Homebrew/homebrew"
 install_dir: "/usr/local"
