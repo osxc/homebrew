@@ -19,10 +19,10 @@
 
 - name: fix user acl on clone_dir and clean up install_dir
   file: path={{ item.path }} state={{ item.state|default('directory') }}
-        owner={{ ansible_user_id }} group=staff mode=0755
+        owner={{ ansible_user_id }} group=staff mode={{ item.mode|default('0664') }}
   with_items:
     - { path: '{{ clone_dir }}' }
-    - { path: '{{ clone_dir }}/bin' }
+    - { path: '{{ clone_dir }}/bin', mode: '0775' }
     - { path: '{{ install_dir }}' , state: 'absent' }
   when: brew_installed.stat.exists == false
 
