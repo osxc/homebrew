@@ -17,4 +17,4 @@
               line='export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
               state=present
               owner={{ item }}
-  with_items: "{{ affected_users }}"
+  with_items: affected_users
