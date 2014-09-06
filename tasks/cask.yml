@@ -1,0 +1,19 @@
+---
+- name: assert cask presence
+  stat: path={{ install_dir }}/bin/brew-cask.rb
+  register: cask_installed
+
+- name: tap the cask repository
+  homebrew_tap: tap=caskroom/cask state=present
+  when: cask_installed.stat.exists == false
+
+- name: install brew-cask
+  homebrew: name=brew-cask state=latest update_homebrew=yes
+  when: cask_installed.stat.exists == false
+
+- name: add new cask opts to common env
+  lineinfile: dest=/Users/{{ affected_users }}/.common_env
+              regexp='^export HOMEBREW_CASK_OPTS'
+              line='export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
+              state=present
+  when: cask_installed.stat.exists == false
