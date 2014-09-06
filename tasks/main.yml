@@ -10,4 +10,4 @@
   homebrew: update_homebrew=yes
 
 - include: cask.yml
-  when: install_cask == yes
+  when: install_cask
