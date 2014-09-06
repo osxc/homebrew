@@ -11,23 +11,15 @@ ansible-playbook -K as sudo is required to maintain permissions
 
 ## Role variables
 
-Default is:
-
-```yaml
-installation_method: script
-clone_dir: ~/src/github.com/Homebrew/homebrew
-install_dir: "/usr/local"
-```
-
-### Description
-
-- `installation_method` - How to install homebrew ? By homebrew's `script` or by git `clone` ?
-- `clone_dir` - Where to install homebrew (in case of `clone` installation) ?
-- `install_dir` - Where to copy it's contents and symlink clone_dir to ?
+| Name                  | Description                                      | Default            |
+|-----------------------|--------------------------------------------------|--------------------|
+| `installation_method` | The way to install homebrew, `script` or `clone` | `script`           |
+| `clone_dir`           | The path where homebrew will be cloned           | `~/src/github.com/Homebrew/homebrew |
+| `install_dir`         | The path where homebrew will be installed        | `/usr/local`       |
 
 ## Dependencies
 
-none
+- XCode Command-Line Tools (needs `git`)
 
 ## License
 
