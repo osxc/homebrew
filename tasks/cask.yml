@@ -1,6 +1,6 @@
 ---
 - name: assert cask presence
-  stat: path={{ install_dir }}/bin/brew-cask.rb
+  stat: path={{ install_dir }}/bin/brew-cask
   register: cask_installed
 
 - name: tap the cask repository
