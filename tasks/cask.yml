@@ -1,14 +1,10 @@
 ---
 - name: assert cask presence
-  stat: path={{ install_dir }}/bin/brew-cask
+  stat: path={{ install_dir }}/Library/Taps/caskroom/homebrew-cask
   register: cask_installed
 
 - name: tap the cask repository
   homebrew_tap: tap=caskroom/cask state=present
-  when: cask_installed.stat.exists == false
-
-- name: install brew-cask
-  homebrew: name=brew-cask state=latest update_homebrew=yes
   when: cask_installed.stat.exists == false
 
 - name: add new cask opts to common env
