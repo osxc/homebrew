@@ -18,3 +18,7 @@
               state=present
               owner={{ item }}
   with_items: affected_users
+    
+- name: export new cask opts
+  environment:
+    HOMEBREW_CASK_OPTS: '--appdir=/Applications'
